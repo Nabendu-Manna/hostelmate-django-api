@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
@@ -7,23 +6,19 @@ from django.utils import timezone
 
 # Create your models here.
 
-
-
-
-# from .managers import CustomUserManager
-
-# Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
 
     # These fields tie to the roles!
     ADMIN = 1
     MANAGER = 2
-    EMPLOYEE = 3
+    LANDLORD = 3
+    CUSTOMER = 4
 
     ROLE_CHOICES = (
         (ADMIN, 'Admin'),
         (MANAGER, 'Manager'),
-        (EMPLOYEE, 'Employee')
+        (LANDLORD, 'Landlord'),
+        (CUSTOMER, 'Customer')
     )
 
     class Meta:
@@ -50,4 +45,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
     
-
