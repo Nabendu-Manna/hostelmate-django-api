@@ -3,11 +3,11 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils import timezone
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
 
 # Create your models here.
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser):
     # These fields tie to the roles!
     ADMIN = 1
     MANAGER = 2
@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     created_by = models.EmailField()
     modified_by = models.EmailField()
-    deleted_by = models.BooleanField(default=False)
+    deleted_by = models.EmailField()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -59,7 +59,7 @@ class CustomerProfile(models.Model):
     state = models.CharField(max_length=30)
     pin = models.IntegerField(validators=[MaxValueValidator(999999), MinValueValidator(100000)])
     
-    phone = models.CharField(min_length=10, max_length=15)
+    phone = models.CharField(max_length=15, validators=[MinLengthValidator(4)])
     home_address = models.CharField(max_length=80)
     home_town = models.CharField(max_length=30)
     home_district = models.CharField(max_length=30)
@@ -77,7 +77,7 @@ class LandlordProfile(models.Model):
     district = models.CharField(max_length=30)
     state = models.CharField(max_length=30)
     pin = models.IntegerField(validators=[MaxValueValidator(999999),MinValueValidator(100000)])
-    phone = models.CharField(min_length=10, max_length=15)
+    phone = models.CharField(max_length=15, validators=[MinLengthValidator(4)])
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
