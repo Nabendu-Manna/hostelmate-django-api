@@ -36,7 +36,7 @@ class User(AbstractBaseUser):
 
     created_at = models.DateTimeField(default=timezone.now)
     modified_at = models.DateTimeField(default=timezone.now)
-    deleted_at = models.BooleanField(default=False)
+    deleted_at = models.DateTimeField(default=timezone.now)
 
     created_by = models.EmailField()
     modified_by = models.EmailField()

@@ -5,8 +5,6 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
 
 
-# Create your models here.
-
 class Room(models.Model):
     # Hostel type
     PG = 1
@@ -17,7 +15,8 @@ class Room(models.Model):
         (MESS, 'Mess'),
     )
 
-    Landlord = models.ForeignKey("accounts.LandlordProfile", verbose_name="Landlord", on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    landlord = models.ForeignKey(LandlordProfile, verbose_name="Landlord", on_delete=models.CASCADE)
     address = models.CharField(max_length=150)
     town = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
@@ -26,7 +25,7 @@ class Room(models.Model):
     phone = models.CharField(max_length=15, validators=[MinLengthValidator(4)])
 
     def __str__(self):
-        return self.Landlord.user.first_name + " " + self.Landlord.user.last_name
+        return self.landlord.user.first_name + " " + self.landlord.user.last_name
 
     # def __unicode__(self):
     #     return 
