@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-euf!bb8!u5su#*a$^(woops(_y(umcx3ic##w8v^q98ua2j-mn
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.0.104', '192.168.0.106']
+ALLOWED_HOSTS = ['192.168.0.104', '192.168.0.106', '192.168.0.109']
 
 
 # Application definition
@@ -137,3 +138,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
