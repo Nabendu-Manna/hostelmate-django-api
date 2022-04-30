@@ -1,13 +1,12 @@
-from django.urls import include, path
-from django.contrib import admin
-from . import views
-from django.conf.urls import url
-from rest_framework import routers
+from django.urls import path
 
-
+from hostelmate import settings
+from .views import RoomView
 
 urlpatterns = [
-    path(r'^admin/', admin.site.urls),
-    # path('', include(router.urls)),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('room/', RoomView.as_view()),
 ]
+
+# if settings.DEBUG:
+#     from django.conf.urls.static import static
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
