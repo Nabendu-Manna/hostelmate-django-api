@@ -20,3 +20,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# ..\myenv\Scripts\activate
+# python manage.py runserver 192.168.0.106:8000 
+# Super User => admin | Pass => nopass@123 
