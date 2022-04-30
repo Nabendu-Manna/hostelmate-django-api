@@ -36,7 +36,7 @@ class User(AbstractBaseUser):
 
     created_at = models.DateTimeField(default=timezone.now)
     modified_at = models.DateTimeField(default=timezone.now)
-    deleted_at = models.BooleanField(default=False)
+    deleted_at = models.DateTimeField(default=timezone.now)
 
     created_by = models.EmailField()
     modified_by = models.EmailField()
@@ -53,18 +53,18 @@ class User(AbstractBaseUser):
 #Model for Customer / Students
 class CustomerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=80)
-    town = models.CharField(max_length=30)
-    district = models.CharField(max_length=30)
-    state = models.CharField(max_length=30)
-    pin = models.IntegerField(validators=[MaxValueValidator(999999), MinValueValidator(100000)])
+    address = models.CharField(max_length=80, default=None, blank=True, null=True)
+    town = models.CharField(max_length=30, default=None, blank=True, null=True)
+    district = models.CharField(max_length=30, default=None, blank=True, null=True)
+    state = models.CharField(max_length=30, default=None, blank=True, null=True)
+    pin = models.IntegerField(validators=[MaxValueValidator(999999), MinValueValidator(100000)], default=None, blank=True, null=True)
     
-    phone = models.CharField(max_length=15, validators=[MinLengthValidator(4)])
-    home_address = models.CharField(max_length=80)
-    home_town = models.CharField(max_length=30)
-    home_district = models.CharField(max_length=30)
-    home_state = models.CharField(max_length=30)
-    home_pin = models.IntegerField(validators=[MaxValueValidator(999999), MinValueValidator(100000)])
+    phone = models.CharField(max_length=15, validators=[MinLengthValidator(4)], default=None, blank=True, null=True)
+    home_address = models.CharField(max_length=80, default=None, blank=True, null=True)
+    home_town = models.CharField(max_length=30, default=None, blank=True, null=True)
+    home_district = models.CharField(max_length=30, default=None, blank=True, null=True)
+    home_state = models.CharField(max_length=30, default=None, blank=True, null=True)
+    home_pin = models.IntegerField(validators=[MaxValueValidator(999999), MinValueValidator(100000)], default=None, blank=True, null=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -72,11 +72,11 @@ class CustomerProfile(models.Model):
 #Model for Landlord / Homeowner
 class LandlordProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=80)
-    town = models.CharField(max_length=30)
-    district = models.CharField(max_length=30)
-    state = models.CharField(max_length=30)
-    pin = models.IntegerField(validators=[MaxValueValidator(999999),MinValueValidator(100000)])
+    address = models.CharField(max_length=80, default=None, blank=True, null=True)
+    town = models.CharField(max_length=30, default=None, blank=True, null=True)
+    district = models.CharField(max_length=30, default=None, blank=True, null=True)
+    state = models.CharField(max_length=30, default=None, blank=True, null=True)
+    pin = models.IntegerField(validators=[MaxValueValidator(999999),MinValueValidator(100000)], default=None, blank=True, null=True)
     phone = models.CharField(max_length=15, validators=[MinLengthValidator(4)])
 
     def __str__(self):
@@ -85,11 +85,11 @@ class LandlordProfile(models.Model):
 #Model for Manager (App Manager)
 class ManagerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=80)
-    town = models.CharField(max_length=30)
-    district = models.CharField(max_length=30)
-    state = models.CharField(max_length=30)
-    pin = models.IntegerField(validators=[MaxValueValidator(999999),MinValueValidator(100000)])
+    address = models.CharField(max_length=80, default=None, blank=True, null=True)
+    town = models.CharField(max_length=30, default=None, blank=True, null=True)
+    district = models.CharField(max_length=30, default=None, blank=True, null=True)
+    state = models.CharField(max_length=30, default=None, blank=True, null=True)
+    pin = models.IntegerField(validators=[MaxValueValidator(999999),MinValueValidator(100000)], default=None, blank=True, null=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
