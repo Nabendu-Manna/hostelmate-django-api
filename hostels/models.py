@@ -19,18 +19,6 @@ class Room(models.Model):
         (MESS, 'Mess'),
     )
 
-<<<<<<< HEAD
-    Landlord = models.ForeignKey("account.LandlordProfile", verbose_name=_("Landlord"), on_delete=models.CASCADE)
-    address = models.CharField(max_length=150)
-    town = models.CharField(max_length=30)
-    district = models.CharField(max_length=30)
-    state = models.CharField(max_length=30)
-    pin = models.IntegerField(validators=[MaxValueValidator(999999),MinValueValidator(100000)])
-    phone = models.CharField(max_length=15, validators=[MinLengthValidator(4)])
-
-    def __str__(self):
-        return self.Landlord.user.first_name + " " + self.Landlord.user.last_name
-=======
     # AVATAR = []
 
     name = models.CharField(max_length=30, unique=True)
@@ -75,7 +63,6 @@ class RoomImage(models.Model):
         except:
             url = ''
         return url
->>>>>>> fa3d7f0993852aae097416e434ef278d69ceb82a
 
     # def __unicode__(self):
     #     return 
