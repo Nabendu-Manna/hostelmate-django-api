@@ -26,11 +26,11 @@ class RoomPost(models.Model):
 
 
 class RoomPostImage(models.Model):
-    post = models.ForeignKey(Room, verbose_name="Room", on_delete=models.CASCADE)
+    post = models.ForeignKey(RoomPost, verbose_name="Room Post", on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/posts/')
 
     def __str__(self):
-        return self.pk + " - " + self.post.title + " - " + self.image
+        return str(self.pk) + " - " + self.post.title + " - " + self.image.name
 
     @property
     def imageURL(self):
