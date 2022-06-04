@@ -18,7 +18,7 @@ class RoomPost(models.Model):
 
     @property
     def images(self):
-        images = self.roomimage_set.all()
+        images = self.roompostimage_set.all()
         return images
     
     def __str__(self):
@@ -26,7 +26,7 @@ class RoomPost(models.Model):
 
 
 class RoomPostImage(models.Model):
-    post = models.ForeignKey(RoomPost, verbose_name="Room Post", on_delete=models.CASCADE)
+    room_post = models.ForeignKey(RoomPost, verbose_name="RoomPost", on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/posts/')
 
     def __str__(self):

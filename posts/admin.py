@@ -8,5 +8,5 @@ class RoomPostAdmin(admin.ModelAdmin):
 
 @admin.register(RoomPostImage)
 class RoomPostImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'post', 'image')
+    list_display = ('id', 'room_post', 'image')
 

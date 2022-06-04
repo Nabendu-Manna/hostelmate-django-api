@@ -36,7 +36,8 @@ urlpatterns = [
     # path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('hostel/', include('hostels.urls'))
+    path('hostel/', include('hostels.urls')),
+    path('posts/', include('posts.urls'))
 ]
 
 if settings.DEBUG:

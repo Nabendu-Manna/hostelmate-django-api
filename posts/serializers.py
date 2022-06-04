@@ -9,25 +9,22 @@ class RoomPostImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoomPostImage
         # fields = '__all__'
-        fields = ('id', 'image', 'room', 'image_url')
+        fields = ('id', 'image', 'room_post', 'image_url')
     
     def get_image_url(self, obj):
-        return obj.room_image.url
+        return obj.image.url
 
 
-class RoomSerializer(serializers.ModelSerializer):
+class RoomPostSerializer(serializers.ModelSerializer):
     images = RoomPostImagesSerializer(
         many=True,
         read_only=True,
-        # required=False
-        # slug_field='avatar_image'
     )
-    avatar_image = RoomPostImagesSerializer(
-        read_only=True
-    )
+    
+    # images = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     
     class Meta:
         model = RoomPost
         # fields = '__all__'
-        fields = ('id', 'title', 'body', 'room')
+        fields = ('id', 'title', 'body', 'room', 'images')
         
