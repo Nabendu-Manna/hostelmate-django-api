@@ -25,5 +25,6 @@ class LoginView(APIView):
         user = authenticate(username=request.data["email"], password=request.data["password"])
         if not user:
             return Response({"error": "Invalid credential."}, status=status.HTTP_400_BAD_REQUEST)
-        token, created = Token.objects.get_or_create(user=user)
+        token, created = Token.objects.get_or_create(user = user)
+        login(request, user)
         return Response({"user_id": user.id, "token": token.key}, status=status.HTTP_200_OK)
