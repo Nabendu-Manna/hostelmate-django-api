@@ -17,8 +17,10 @@ from django.db import transaction
 from .models import Room, RoomImage
 from accounts.models import User, LandlordProfile
 from hostels.serializers import RoomSerializer
+from rest_framework.permissions import IsAuthenticated
 
 class RoomView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, *args, **kwargs):
         try:
             room = Room.objects.all()
