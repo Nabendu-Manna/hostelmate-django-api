@@ -19,6 +19,9 @@ from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.conf.urls.static import serve
+from django.conf.urls import url
+
 # from tutorial.quickstart import views
 
 # from rest_framework_simplejwt.views import (
@@ -37,7 +40,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('hostel/', include('hostels.urls')),
-    path('posts/', include('posts.urls'))
+    path('posts/', include('posts.urls')),
+
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
 
 if settings.DEBUG:

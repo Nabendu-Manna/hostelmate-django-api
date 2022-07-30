@@ -20,7 +20,7 @@ from hostels.serializers import RoomSerializer
 from rest_framework.permissions import IsAuthenticated
 
 class RoomView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def get(self, request, *args, **kwargs):
         try:
             room = Room.objects.all()
