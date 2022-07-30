@@ -27,7 +27,6 @@ SECRET_KEY = 'django-insecure-euf!bb8!u5su#*a$^(woops(_y(umcx3ic##w8v^q98ua2j-mn
 # DEBUG = True
 DEBUG = False
 
-DISABLE_COLLECTSTATIC=1
 
 # ALLOWED_HOSTS = [
 #     '127.0.0.1', 
