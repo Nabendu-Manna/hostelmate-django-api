@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-euf!bb8!u5su#*a$^(woops(_y(umcx3ic##w8v^q98ua2j-mn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 
 # ALLOWED_HOSTS = [
@@ -37,8 +37,8 @@ DEBUG = False
 # ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'hostelmate-api.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1:8000', 'hostelmate-api.herokuapp.com']
 
 # Application definition
 
@@ -61,9 +61,9 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
