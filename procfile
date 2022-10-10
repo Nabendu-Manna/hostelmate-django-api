@@ -1,1 +1,0 @@
-web: gunicorn hostelmate.wsgi --log-file -

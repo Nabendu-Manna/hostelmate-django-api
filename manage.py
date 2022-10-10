@@ -24,4 +24,4 @@ if __name__ == '__main__':
 # ..\myenv\Scripts\activate
 # python manage.py runserver 192.168.0.106:8000 
 # python manage.py runserver 192.168.1.14:8000 
-# Super User => admin | Pass => nopass@123 
+# Super User : Email => superuser@test.com | Pass => nopass@123 

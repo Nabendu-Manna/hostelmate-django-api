@@ -18,15 +18,13 @@ from .models import Room, RoomImage
 from accounts.models import User, LandlordProfile
 from hostels.serializers import RoomSerializer
 from rest_framework.permissions import IsAuthenticated
+from accounts.permissions import IsUserLandlord
 
 class RoomView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request, *args, **kwargs):
         try:
             room = Room.objects.all()
-            # print(room[1])
-            # room = []
-
         except:
             return Response({}, status = status.HTTP_400_BAD_REQUEST)
         
