@@ -9,19 +9,5 @@ Project for hostel management
 ## Team 🤼‍♂️:
 
 - 🔵 Nabendu Manna 👨‍💻✔
-- 🟢 Shuvajit Ghosh 👨‍💻
-- 🔴 Swagato 👨‍🎓
-
-## Team 🤼‍♂️:
-
-- 🔵 Nabendu Manna 👨‍💻✔
-- 🟢 Shuvajit Ghosh 👨‍💻
-- 🔴 Swagato 👨‍🎓
-
-## Team 🤼‍♂️:
-
-- 🔵 Nabendu Manna 👨‍💻✔
-- 🟢 Shuvajit Ghosh 👨‍💻
-- 🔴 Swagato 👨‍🎓
 
 ---
