@@ -24,7 +24,7 @@ from rest_framework.permissions import IsAuthenticated
 from accounts.permissions import IsUserLandlord
 
 class RoomView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsUserLandlord]
     def get(self, request, *args, **kwargs):
         try:
             room = Room.objects.all()
@@ -35,7 +35,6 @@ class RoomView(APIView):
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        permission_classes = [IsAuthenticated, IsUserLandlord]
         result = RequestContext(request, {'landlord': request.user.landlordprofile})
         serializer = RoomSerializer(data = request.data)
         if serializer.is_valid():

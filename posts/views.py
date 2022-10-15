@@ -24,6 +24,7 @@ from accounts.models import User, LandlordProfile
 from posts.serializers import RoomPostSerializer
 
 class RoomPostView(APIView):
+    permission_classes = [IsAuthenticated, IsUserLandlord]
     def get(self, request, *args, **kwargs):
         try:
             room = RoomPost.objects.all()
@@ -34,7 +35,6 @@ class RoomPostView(APIView):
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        permission_classes = [IsAuthenticated, IsUserLandlord]
         result = RequestContext(request, {"landlord": request.user.landlordprofile})
         serializer = RoomPostSerializer(data = request.data)
         if serializer.is_valid():
