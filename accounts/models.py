@@ -6,6 +6,8 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
 
+# from hostels.models import Room
+
 # Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self, email, password, **kwargs):
@@ -88,6 +90,7 @@ class CustomerProfile(models.Model):
     home_district = models.CharField(max_length=30, default=None, blank=True, null=True)
     home_state = models.CharField(max_length=30, default=None, blank=True, null=True)
     home_pin = models.IntegerField(validators=[MaxValueValidator(999999), MinValueValidator(100000)], default=None, blank=True, null=True)
+    room = models.ForeignKey('hostels.Room', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name

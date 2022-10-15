@@ -1,10 +1,10 @@
 from django.urls import path
-
 from hostelmate import settings
-from .views import RoomView
+from .views import RoomDetailsView, RoomView
 
 urlpatterns = [
-    path('room/', RoomView.as_view()),
+    path('room/', RoomView.as_view(), name="room-list"),
+    path('room/<int:pk>/', RoomDetailsView.as_view(), name="room-details"),
 ]
 
 # if settings.DEBUG:
