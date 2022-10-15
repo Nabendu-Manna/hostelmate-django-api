@@ -14,7 +14,6 @@ class RoomImagesSerializer(serializers.ModelSerializer):
     def get_image_url(self, obj):
         return obj.room_image.url
 
-
 class RoomSerializer(serializers.ModelSerializer):
     images = RoomImagesSerializer(
         many=True,

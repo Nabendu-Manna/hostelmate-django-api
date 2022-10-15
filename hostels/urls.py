@@ -3,8 +3,8 @@ from hostelmate import settings
 from .views import RoomDetailsView, RoomView
 
 urlpatterns = [
-    path('room/', RoomView.as_view()),
-    path('room/<int:pk>', RoomDetailsView.as_view()),
+    path('room/', RoomView.as_view(), name="room-list"),
+    path('room/<int:pk>/', RoomDetailsView.as_view(), name="room-details"),
 ]
 
 # if settings.DEBUG:
