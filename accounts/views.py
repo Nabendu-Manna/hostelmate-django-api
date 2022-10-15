@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 
 from accounts.serializers import UserSerializer
 from rest_framework.authtoken.models import Token
+from django.contrib.auth import logout as djLogout
 
 from django.utils.translation import gettext_lazy as _
 
@@ -28,3 +29,13 @@ class LoginView(APIView):
         token, created = Token.objects.get_or_create(user = user)
         login(request, user)
         return Response({"user_id": user.id, "token": token.key}, status=status.HTTP_200_OK)
+
+class LogoutView(APIView):
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            request.user.auth_token.delete()
+            djLogout(request)
+            return Response({"message": "Logout Successful."}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "You are not Logged in. Please Login and try again."}, status=status.HTTP_400_BAD_REQUEST)
+        
