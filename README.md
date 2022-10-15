@@ -15,20 +15,6 @@ $ https://restless-meadow-179867.postman.co/workspace/e-Celtic~0c499595-e12c-438
 ---
 ## Team 🤼‍♂️:
 
-- 🔵 Nabendu Manna 👨‍💻✔
-- 🟢 Shuvajit Ghosh 👨‍💻
-- 🔴 Swagato 👨‍🎓
-
-## Team 🤼‍♂️:
-
-- 🔵 Nabendu Manna 👨‍💻✔
-- 🟢 Shuvajit Ghosh 👨‍💻
-- 🔴 Swagato 👨‍🎓
-
-## Team 🤼‍♂️:
-
-- 🔵 Nabendu Manna 👨‍💻✔
-- 🟢 Shuvajit Ghosh 👨‍💻
-- 🔴 Swagato 👨‍🎓
+- 🔵 🟢 🔴 Nabendu Manna 👨‍💻✔👨‍🎓
 
 ---
