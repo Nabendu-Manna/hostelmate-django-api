@@ -57,7 +57,6 @@ class RoomDetailsView(APIView):
     def patch(self, request, pk, *args, **kwargs):
         room = Room.objects.get(id=pk)
         serializer = RoomSerializer(instance=room, data=request.data, partial=True)
-        print(serializer.is_valid())
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
