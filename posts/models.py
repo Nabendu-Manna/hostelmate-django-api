@@ -22,7 +22,7 @@ class RoomPost(models.Model):
         return images
     
     def __str__(self):
-        return self.title + " - " + self.room.name
+        return str(self.title + " - " + self.room.name)
 
 
 class RoomPostImage(models.Model):

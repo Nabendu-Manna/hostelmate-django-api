@@ -1,3 +1,4 @@
+import json
 from webbrowser import get
 from django.shortcuts import get_object_or_404, render
 from os import path
@@ -6,6 +7,7 @@ from django.http import JsonResponse
 
 from django.http import HttpResponse
 from django.http import Http404
+from hostels.models import Room
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
@@ -22,7 +24,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import RoomPostImage, RoomPost
 from accounts.models import User, LandlordProfile
 
-from posts.serializers import RoomPostSerializer
+from posts.serializers import RoomPostImagesSerializer, RoomPostSerializer
 
 class RoomPostView(APIView):
     permission_classes = [IsAuthenticated, IsUserLandlord]
@@ -36,7 +38,12 @@ class RoomPostView(APIView):
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        result = RequestContext(request, {"landlord": request.user.landlordprofile})
+        room = get_object_or_404(Room, id=request.data["room"])
+        result = RequestContext(request, {
+            "landlord": request.user.landlordprofile,
+            "room": room
+        })
+        print(request.data)
         serializer = RoomPostSerializer(data = request.data)
         if serializer.is_valid():
             roomPost = serializer.save()
@@ -68,3 +75,19 @@ class RoomPostDetailsView(APIView):
         roomPost = get_object_or_404(RoomPost, id=pk)
         roomPost.delete()
         return Response({"massage": "Successfully deleted."}, status=status.HTTP_202_ACCEPTED)
+
+
+
+class RoomPostImagesView(APIView):
+    permission_classes = [IsAuthenticated, IsUserLandlord]
+    
+    def post(self, request, pk, *args, **kwargs):
+        room_post = get_object_or_404(RoomPost, id=pk)
+        payload = request.data.copy()
+        payload['room_post'] = room_post.pk
+        serializer = RoomPostImagesSerializer(data = payload)
+        if serializer.is_valid():
+            roomPostImages = serializer.save()
+            return Response({"room_post_images": roomPostImages.id, "massage": "Successfully Created."}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
