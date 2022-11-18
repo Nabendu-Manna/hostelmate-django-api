@@ -1,30 +1,27 @@
 import json
-from webbrowser import get
-from django.shortcuts import get_object_or_404, render
 from os import path
 from sqlite3 import IntegrityError
-from django.http import JsonResponse
+from webbrowser import get
 
-from django.http import HttpResponse
-from django.http import Http404
-from hostels.models import Room
+from django.db import transaction
+from django.http import Http404, HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, render
+from django.template import RequestContext
+from django.views import View
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
-from rest_framework import status
-from rest_framework import viewsets
-from django.views import View
-from django.db import transaction
-from django.template import RequestContext
 
+from accounts.models import LandlordProfile, User
 from accounts.permissions import IsUserLandlord
-from rest_framework.permissions import IsAuthenticated
-
-from .models import RoomPostImage, RoomPost
-from accounts.models import User, LandlordProfile
-
+from hostels.models import Room
 from posts.serializers import RoomPostImagesSerializer, RoomPostSerializer
+
+from .models import RoomPost, RoomPostImage
+
 
 class RoomPostView(APIView):
     permission_classes = [IsAuthenticated, IsUserLandlord]
@@ -76,15 +73,13 @@ class RoomPostDetailsView(APIView):
         roomPost.delete()
         return Response({"massage": "Successfully deleted."}, status=status.HTTP_202_ACCEPTED)
 
-
-
 class RoomPostImagesView(APIView):
     permission_classes = [IsAuthenticated, IsUserLandlord]
     
     def post(self, request, pk, *args, **kwargs):
         room_post = get_object_or_404(RoomPost, id=pk)
         payload = request.data.copy()
-        payload['room_post'] = room_post.pk
+        payload['room_post'] = pk
         serializer = RoomPostImagesSerializer(data = payload)
         if serializer.is_valid():
             roomPostImages = serializer.save()
