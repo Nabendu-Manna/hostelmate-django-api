@@ -1,7 +1,8 @@
 from django.urls import path
 
 from hostelmate import settings
-from .views import RoomPostImagesView, RoomPostView, RoomPostDetailsView
+
+from .views import RoomPostDetailsView, RoomPostImagesView, RoomPostView
 
 urlpatterns = [
     path('room/', RoomPostView.as_view()),
