@@ -1,9 +1,9 @@
+from django.core.validators import (MaxValueValidator, MinLengthValidator,
+                                    MinValueValidator)
 from django.db import models
+from django.utils import timezone
 
 from accounts.models import LandlordProfile
-from django.utils import timezone
-from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
-
 from hostelmate import settings
 
 # class RoomImage(models.Model):
